@@ -1,0 +1,10 @@
+
+Scheduler site using html, css and javascript
+
+navbar to navigate between the pages:
+1. home - where the week full Scheduler will be
+2. login 
+3. register
+
+the users details will be kept in the localstorage
+
