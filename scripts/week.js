@@ -51,6 +51,25 @@ function nextWeek() {
     fillWeek(weekStartDate);
 }
 
+function openModalForNew(event) {
+    let elementId = event.target.id; //looks like: "day4hour14"
+
+    //take the day-number from the id:
+    let dayNumber = elementId[3];
+
+    //find the date of this day:
+    const hiddenElement = document.getElementById(`hidden${dayNumber}`);
+    let dayDate = hiddenElement.innerText;
+
+    //find the time from the id:
+    let hour = elementId.substring(8);
+
+    //now we have the date: dayDate (example: "2025-04-22")
+    //and the time: hour (examples: "8" or "12")
+    console.log(dayDate);
+    console.log(hour);
+}
+
 
 // dates date טיפול בתאריכים
 // -----------------------------------
