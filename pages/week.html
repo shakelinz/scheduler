@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week View</title>
+  <link rel="stylesheet" href="../styles/week.css">
+</head>
+<body>
+  <div>
+    <button onclick="prevWeek()" class="GoToBtns" title="Go To Previous Week">←</button>
+  </div>
+  <div class="calendar-container">
+    <div class="week">
+      <div class="day">
+        <div class="day-header" id="day1">
+            <p id="dayName1">Sunday</p>
+            <p id="dayDate1">20/4/2025</p>
+            <p id="hidden1" style="display: none;"></p>
+        </div>
+        <div class="hour" id="day1hour8">08:00</div>
+        <div class="hour" id="day1hour9">09:00</div>
+        <div class="hour" id="day1hour10">10:00 <div class="task">Team Sync</div></div>
+        <div class="hour" id="day1hour11">11:00</div>
+        <div class="hour" id="day1hour12">12:00 <div class="task">Write Report</div></div>
+        <div class="hour" id="day1hour13">13:00</div>
+        <div class="hour" id="day1hour14">14:00</div>
+        <div class="hour" id="day1hour15">15:00</div>
+        <div class="hour" id="day1hour16">16:00</div>
+        <div class="hour" id="day1hour17">17:00</div>
+        <div class="hour" id="day1hour18">18:00</div>
+      </div>
+      <div class="day">
+        <div class="day-header" id="day2">
+            <p id="dayName2">Monday</p>
+            <p id="dayDate2">21/4/2025</p>
+            <p id="hidden2" style="display: none;"></p>
+        </div>
+        <div class="hour" id="day2hour8">08:00</div>
+        <div class="hour" id="day2hour9">09:00</div>
+        <div class="hour" id="day2hour10">10:00 <div class="task">Team Sync</div></div>
+        <div class="hour" id="day2hour11">11:00</div>
+        <div class="hour" id="day2hour12">12:00 <div class="task">Write Report</div></div>
+        <div class="hour" id="day2hour13">13:00</div>
+        <div class="hour" id="day2hour14">14:00</div>
+        <div class="hour" id="day2hour15">15:00</div>
+        <div class="hour" id="day2hour16">16:00</div>
+        <div class="hour" id="day2hour17">17:00</div>
+        <div class="hour" id="day2hour18">18:00</div>
+      </div>
+      <div class="day">
+        <div class="day-header" id="day3">
+            <p id="dayName3">Tuesday</p>
+            <p id="dayDate3">22/4/2025</p>
+            <p id="hidden3" style="display: none;"></p>
+        </div>
+        <div class="hour" id="day3hour8">08:00</div>
+        <div class="hour" id="day3hour9">09:00</div>
+        <div class="hour" id="day3hour10">10:00 <div class="task">Team Sync</div></div>
+        <div class="hour" id="day3hour11">11:00</div>
+        <div class="hour" id="day3hour12">12:00 <div class="task">Write Report</div></div>
+        <div class="hour" id="day3hour13">13:00</div>
+        <div class="hour" id="day3hour14">14:00</div>
+        <div class="hour" id="day3hour15">15:00</div>
+        <div class="hour" id="day3hour16">16:00</div>
+        <div class="hour" id="day3hour17">17:00</div>
+        <div class="hour" id="day3hour18">18:00</div>        
+      </div>
+      <div class="day">
+        <div class="day-header" id="day4">
+            <p id="dayName4">Wednesday</p>
+            <p id="dayDate4">23/4/2025</p>
+            <p id="hidden4" style="display: none;"></p>
+        </div>
+        <div class="hour" id="day4hour8">08:00</div>
+        <div class="hour" id="day4hour9">09:00</div>
+        <div class="hour" id="day4hour10">10:00 <div class="task">Team Sync</div></div>
+        <div class="hour" id="day4hour11">11:00</div>
+        <div class="hour" id="day4hour12">12:00 <div class="task">Write Report</div></div>
+        <div class="hour" id="day4hour13">13:00</div>
+        <div class="hour" id="day4hour14">14:00</div>
+        <div class="hour" id="day4hour15">15:00</div>
+        <div class="hour" id="day4hour16">16:00</div>
+        <div class="hour" id="day4hour17">17:00</div>
+        <div class="hour" id="day4hour18">18:00</div>
+      </div>
+      <div class="day">
+        <div class="day-header" id="day5">
+            <p id="dayName5">Thursday</p>
+            <p id="dayDate5">24/4/2025</p>
+            <p id="hidden5" style="display: none;"></p>
+        </div>
+        <div class="hour" id="day5hour8">08:00</div>
+        <div class="hour" id="day5hour9">09:00</div>
+        <div class="hour" id="day5hour10">10:00 <div class="task">Team Sync</div></div>
+        <div class="hour" id="day5hour11">11:00</div>
+        <div class="hour" id="day5hour12">12:00 <div class="task">Write Report</div></div>
+        <div class="hour" id="day5hour13">13:00</div>
+        <div class="hour" id="day5hour14">14:00</div>
+        <div class="hour" id="day5hour15">15:00</div>
+        <div class="hour" id="day5hour16">16:00</div>
+        <div class="hour" id="day5hour17">17:00</div>
+        <div class="hour" id="day5hour18">18:00</div>
+      </div>
+      <div class="day">
+        <div class="day-header" id="day6">
+            <p id="dayName6">Friday</p>
+            <p id="dayDate6">25/4/2025</p>
+            <p id="hidden6" style="display: none;"></p>
+        </div>
+        <div class="hour" id="day6hour8">08:00</div>
+        <div class="hour" id="day6hour9">09:00</div>
+        <div class="hour" id="day6hour10">10:00 <div class="task">Team Sync</div></div>
+        <div class="hour" id="day6hour11">11:00</div>
+        <div class="hour" id="day6hour12">12:00 <div class="task">Write Report</div></div>
+        <div class="hour" id="day6hour13">13:00</div>
+        <div class="hour" id="day6hour14">14:00</div>
+        <div class="hour" id="day6hour15">15:00</div>
+        <div class="hour" id="day6hour16">16:00</div>
+        <div class="hour" id="day6hour17">17:00</div>
+        <div class="hour" id="day6hour18">18:00</div>
+      </div>
+      <div class="day">
+        <div class="day-header" id="day7">
+            <p id="dayName7">Saturday</p>
+            <p id="dayDate7">26/4/2025</p>
+            <p id="hidden7" style="display: none;"></p>
+        </div>
+        <div class="hour" id="day7hour8">08:00</div>
+        <div class="hour" id="day7hour9">09:00</div>
+        <div class="hour" id="day7hour10">10:00 <div class="task">Team Sync</div></div>
+        <div class="hour" id="day7hour11">11:00</div>
+        <div class="hour" id="day7hour12">12:00 <div class="task">Write Report</div></div>
+        <div class="hour" id="day7hour13">13:00</div>
+        <div class="hour" id="day7hour14">14:00</div>
+        <div class="hour" id="day7hour15">15:00</div>
+        <div class="hour" id="day7hour16">16:00</div>
+        <div class="hour" id="day7hour17">17:00</div>
+        <div class="hour" id="day7hour18">18:00</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button onclick="nextWeek()" class="GoToBtns" title="Go To Next Week">→</button>
+  </div>
+  <script src="../scripts/week.js"></script>
+</body>
+</html>
