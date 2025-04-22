@@ -1,3 +1,4 @@
+let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const navBar = document.getElementById("navBar");
 navBar.innerHTML = `
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,3 +25,26 @@ navBar.innerHTML = `
     </div>
 </nav>
 `;
+
+// If someone is logged in, update navbar
+if (currentUser) {
+  document.getElementById("userInfo").innerHTML = `
+          <span class="me-2">Welcome, <strong>${currentUser.username}</strong></span>
+          <button class="btn btn-outline-danger ms-3" onclick="logout()">Logout</button>
+      `;
+  // Hide register and login links
+  document.getElementById("register").style.display = "none";
+  document.getElementById("login").style.display = "none";
+}
+
+// Logout function
+function logout() {
+    let users = JSON.parse(localStorage.getItem("users"));
+    users = users.map((user) =>
+      user.username == currentUser.username ? currentUser : user
+    );
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.removeItem("currentUser");
+    window.location.reload(); // Refresh to update navbar
+    location.href = "home.html";
+  }
