@@ -1,5 +1,6 @@
 export class User {
-    constructor(username, password, tasks, isManager) {
+    constructor(userId, username, password, tasks, isManager) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.tasks = tasks;
@@ -8,7 +9,8 @@ export class User {
 }
 
 export class Task {
-    constructor(description, priority, date, time, creatorId, status) {
+    constructor(taskId, description, priority, date, time, creatorId, status) {
+        this.taskId = taskId;
         this.description = description;
         this.priority = priority;
         this.date = date;
