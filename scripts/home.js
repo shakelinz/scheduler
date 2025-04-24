@@ -18,6 +18,7 @@ function saveTask() {
     let time = document.getElementById("time").value;
     let creatorId = currentUser.userId;
     let status = "pending";
+    let task = tasks.find(task => task.description == description && task.date == date && task.time == time && task.priority == priority && task.creatorId == creatorId);
     let newTask = new Task(taskId, description, priority, date, time, creatorId, status);
     tasks.push(newTask);
     currentUser.tasks.push(newTask);
@@ -26,6 +27,19 @@ function saveTask() {
 
     closeModal();
     location.reload();
+}
+function editTask(taskId) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let task = tasks.find(task => task.taskId === taskId);
+    if (task) {
+        document.getElementById("description").value = task.description;
+        document.getElementById("priority").value = task.priority;
+        document.getElementById("date").value = task.date;
+        document.getElementById("time").value = task.time;
+        document.getElementById("modalTitle").innerText = task.description;
+        document.getElementById("newTaskModal").showModal();
+    }
+    
 }
 
 
@@ -37,6 +51,7 @@ window.nextWeek = nextWeek;
 window.openModalForNew = openModalForNew;
 window.closeModal = closeModal;
 window.saveTask = saveTask;
+window.editTask = editTask;
 
 
 

@@ -144,7 +144,7 @@ export function putTasksOnWeek(startDate) {
 
     //add innerHTML like this: <div class="task">Task Description</div>
     hourElement.innerHTML += `
-            <div class="task">${tmpTask.description}</div>    
+            <div class="task" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
         `;
   }
 }
