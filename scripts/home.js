@@ -5,10 +5,39 @@ initLocalStorage();
 //main code
 let weekStartDate = new Date(setDatesInWeek());
 fillWeek(weekStartDate);
+function closeModal() {
+    document.getElementById("newTaskModal").close();
+}
+function saveTask() {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    let taskId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].taskId + 1 : 1;
+    let description = document.getElementById("description").value;
+    let priority = document.getElementById("priority").value;
+    let date = document.getElementById("date").value;
+    let time = document.getElementById("time").value;
+    let creatorId = currentUser.userId;
+    let status = "pending";
+    let newTask = new Task(taskId, description, priority, date, time, creatorId, status);
+    tasks.push(newTask);
+    currentUser.tasks.push(newTask);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+    closeModal();
+    location.reload();
+}
+
+
+
+
 // Attaching functions globally in order for them to work with onclick
 window.prevWeek = prevWeek;
 window.nextWeek = nextWeek;
 window.openModalForNew = openModalForNew;
+window.closeModal = closeModal;
+window.saveTask = saveTask;
+
 
 
 // dates date טיפול בתאריכים

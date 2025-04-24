@@ -16,6 +16,11 @@
     <!-- navbar -->
     <div id="navBar"></div>
     <div id="home-container">
+      <div id="addTaskBtnDiv">
+        <button id="addTaskBtn" onclick="openModalForNew(event)">
+          Add a new task
+        </button>
+      </div>
       <div>
         <button
           onclick="prevWeek()"
@@ -330,6 +335,109 @@
         </button>
       </div>
     </div>
+    <dialog id="newTaskModal">
+      <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+          <!-- Close Button -->
+          <button
+            class="btn btn-danger btn-sm"
+            onclick="closeModal()"
+            style="position: absolute; top: 10px; right: 10px; z-index: 10"
+          >
+            X
+          </button>
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-12 col-xl-13">
+              <div
+                class="card shadow-2-strong card-registration"
+                style="border-radius: 15px"
+              >
+                <div class="card-body p-4 p-md-5">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">New Task</h3>
+                  <form id="productForm">
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div data-mdb-input-init class="form-outline">
+                          <input
+                            required
+                            type="text"
+                            id="description"
+                            class="form-control form-control-lg"
+                          />
+                          <label class="form-label" for="description"
+                            >Task description</label
+                          >
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div data-mdb-input-init class="form-outline">
+                          <input
+                            required
+                            type="number"
+                            min="1"
+                            max="3"
+                            id="priority"
+                            class="form-control form-control-lg"
+                          />
+                          <label class="form-label" for="priority"
+                            >Priority</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4 d-flex align-items-center">
+                        <div
+                          data-mdb-input-init
+                          class="form-outline datepicker w-100"
+                        >
+                          <input
+                            required
+                            type="date"
+                            class="form-control form-control-lg"
+                            id="date"
+                          />
+                          <label for="date" class="form-label"
+                            >Date</label
+                          >
+                        </div>
+                      </div>
+                      
+
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div data-mdb-input-init class="form-outline">
+                          <input
+                            type="number"
+                            min="8"
+                            max="18"
+                            id="time"
+                            class="form-control form-control-lg"
+                          />
+                          <label class="form-label" for="time"
+                            >Time(8-18)</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mt-4 pt-2">
+                      <input
+                        data-mdb-ripple-init
+                        class="btn btn-primary btn-lg"
+                        type="submit"
+                        value="Save changes"
+                        id="saveChanges"
+                        onclick="saveTask()"
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </dialog>
 
     <!-- jquary scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
