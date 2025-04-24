@@ -116,8 +116,10 @@ export function putTasksOnWeek(startDate) {
 
   //also, show only tasks of dates: from startDate until (startDate + 6)
   thisWeekStartDate = new Date(startDate);
+  thisWeekStartDate.setHours(0, 0, 0, 0);
   thisWeekEndDate = new Date(startDate);
   thisWeekEndDate.setDate(thisWeekEndDate.getDate() + 6);
+  thisWeekEndDate.setHours(23, 59, 59, 999);
 
   //let stringThisWeekStartDate = thisWeekStartDate.toISOString().split('T')[0]; //"YYYY-MM-DD"
   //let stringThisWeekEndDate = thisWeekEndDate.toISOString().split('T')[0]; //"YYYY-MM-DD"
@@ -131,6 +133,7 @@ export function putTasksOnWeek(startDate) {
     let tmpTask = tasksArr[i];
     if (isManager == false && tmpTask.creatorId != userId) continue;
     let tmpThisDate = new Date(tmpTask.date);
+    tmpThisDate.setHours(tmpTask.time, 0, 0, 0);
     if (tmpThisDate < thisWeekStartDate || tmpThisDate > thisWeekEndDate) continue;
 
     //now we know the task should appear in this week
