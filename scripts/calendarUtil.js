@@ -80,7 +80,7 @@ export function openModalForNew(event) {
   document.getElementById("time").value = hour;
   document.getElementById("priority").value = 1;
 }
-
+let test = "test";
 export let currUser;
 export let tasksArr = [];
 export function clearWeek() {
