@@ -107,7 +107,7 @@ export function putTasksOnWeek(startDate) {
 
   // get currentUser.userId & isManager
   currUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (currUser === "{}") {
+  if (!currUser) {
     return;
   }
   const userId = currUser.userId;
