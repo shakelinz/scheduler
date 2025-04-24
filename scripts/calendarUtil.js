@@ -71,8 +71,6 @@ export function openModalForNew(event) {
 
     //now we have the date: dayDate (example: "2025-04-22")
     //and the time: hour (examples: "8" or "12")
-    console.log(dayDate);
-    console.log(hour);
   }
   let newTaskModal = document.getElementById("newTaskModal");
   newTaskModal.showModal();
@@ -144,7 +142,7 @@ export function putTasksOnWeek(startDate) {
     let tmpDate = new Date(tmpTask.date);
     let tmpDayInWeek = tmpDate.getDay() + 1; //because getDay() returns 0 for Sunday, 1 for Monday etc.
     hourElement = document.getElementById(`day${tmpDayInWeek}hour${tmpTask.time}`);
-
+    
     //add innerHTML like this: <div class="task">Task Description</div>
     hourElement.innerHTML += `
             <div class="task" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    

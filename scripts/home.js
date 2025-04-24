@@ -5,23 +5,34 @@ initLocalStorage();
 //main code
 let weekStartDate = new Date(setDatesInWeek());
 fillWeek(weekStartDate);
+
+
 function closeModal() {
     document.getElementById("newTaskModal").close();
 }
-function saveTask() {
+function saveTask(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    let taskId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].taskId + 1 : 1;
     let description = document.getElementById("description").value;
     let priority = document.getElementById("priority").value;
     let date = document.getElementById("date").value;
     let time = document.getElementById("time").value;
     let creatorId = currentUser.userId;
     let status = "pending";
-    let task = tasks.find(task => task.description == description && task.date == date && task.time == time && task.priority == priority && task.creatorId == creatorId);
-    let newTask = new Task(taskId, description, priority, date, time, creatorId, status);
-    tasks.push(newTask);
-    currentUser.tasks.push(newTask);
+    let task = tasks.find(task => task.taskId == taskId);
+    if (task) {
+        task.description = description;
+        task.priority = priority;
+        task.date = date;
+        task.time = time;
+        task.status = status;
+    } else {
+        // Create a new task if taskId is not found
+        taskId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].taskId + 1 : 1;
+        task = new Task(taskId, description, priority, date, time, creatorId, status);
+        tasks.push(task);
+        currentUser.tasks.push(task);
+    }
     localStorage.setItem("tasks", JSON.stringify(tasks));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
@@ -35,8 +46,9 @@ function editTask(taskId) {
         document.getElementById("description").value = task.description;
         document.getElementById("priority").value = task.priority;
         document.getElementById("date").value = task.date;
-        document.getElementById("time").value = task.time;
+        document.getElementById("time").value = Number(task.time);
         document.getElementById("modalTitle").innerText = task.description;
+        document.getElementById("saveChanges").onclick = () => saveTask(task.taskId);
         document.getElementById("newTaskModal").showModal();
     }
     
