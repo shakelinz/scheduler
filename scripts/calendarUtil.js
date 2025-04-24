@@ -58,7 +58,7 @@ export function openModalForNew(event) {
   //take the day-number from the id:
   let dayNumber = elementId[3];
   let dayDate = "0";
-  let hour = 0;
+  let hour = 8;
   //   The user clicked inside the calendar
   //find the date of this day:
   const hiddenElement = document.getElementById(`hidden${dayNumber}`);
