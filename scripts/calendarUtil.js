@@ -31,6 +31,7 @@ export function fillWeek(weekStartDate) {
 
     startDate.setDate(startDate.getDate() + 1);
   }
+  putTasksOnWeek(weekStartDate);
 }
 
 export function prevWeek() {
@@ -50,9 +51,9 @@ export function nextWeek() {
 }
 
 export function openModalForNew(event) {
-    if(!localStorage.getItem("currentUser")) {//no user is logged in
-        document.location.href = "login.html";
-    }
+  if (!localStorage.getItem("currentUser")) {//no user is logged in
+    document.location.href = "login.html";
+  }
   let elementId = event.target.id; //looks like: "day4hour14"
 
   //take the day-number from the id:
@@ -78,4 +79,72 @@ export function openModalForNew(event) {
   document.getElementById("date").value = dayDate;
   document.getElementById("time").value = hour;
   document.getElementById("priority").value = 1;
+}
+
+export let currUser;
+export let tasksArr = [];
+export function clearWeek() {
+  let hourElement;
+  let hourString = "";
+  for (let i = 1; i <= 7; i++) {
+    for (let j = 8; j <= 18; j++) {
+      if (j < 10) {
+        hourString = `0${j}:00`;
+      } else {
+        hourString = `${j}:00`;
+      }
+      hourElement = document.getElementById(`day${i}hour${j}`);
+      hourElement.innerHTML = hourString;
+    }
+  }
+}
+
+export function putTasksOnWeek(startDate) {
+  let hourElement;
+  let thisWeekStartDate;
+  let thisWeekEndDate;
+  clearWeek();
+
+  // get currentUser.userId & isManager
+  currUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (currUser === "{}") {
+    return;
+  }
+  const userId = currUser.userId;
+  const isManager = currUser.isManager;
+  //if isManager == true -> show all tasks. else, show only tasks of userId (Task.creatorId)
+
+  //also, show only tasks of dates: from startDate until (startDate + 6)
+  thisWeekStartDate = new Date(startDate);
+  thisWeekEndDate = new Date(startDate);
+  thisWeekEndDate.setDate(thisWeekEndDate.getDate() + 6);
+
+  //let stringThisWeekStartDate = thisWeekStartDate.toISOString().split('T')[0]; //"YYYY-MM-DD"
+  //let stringThisWeekEndDate = thisWeekEndDate.toISOString().split('T')[0]; //"YYYY-MM-DD"
+
+  //get tasks
+  tasksArr = JSON.parse(localStorage.getItem("tasks"));
+  if (tasksArr.length == 0) {
+    return;
+  }
+  for (let i = 0; i < tasksArr.length; i++) {
+    let tmpTask = tasksArr[i];
+    if (isManager == false && tmpTask.creatorId != userId) continue;
+    let tmpThisDate = new Date(tmpTask.date);
+    if (tmpThisDate < thisWeekStartDate || tmpThisDate > thisWeekEndDate) continue;
+
+    //now we know the task should appear in this week
+    //from the task we have: tmpTask.time
+    //the hour element's id is like this: `day${dayInWeek}hour${hour}`
+
+    //find number of the day in the week
+    let tmpDate = new Date(tmpTask.date);
+    let tmpDayInWeek = tmpDate.getDay() + 1; //because getDay() returns 0 for Sunday, 1 for Monday etc.
+    hourElement = document.getElementById(`day${tmpDayInWeek}hour${tmpTask.time}`);
+
+    //add innerHTML like this: <div class="task">Task Description</div>
+    hourElement.innerHTML += `
+            <div class="task">${tmpTask.description}</div>    
+        `;
+  }
 }
