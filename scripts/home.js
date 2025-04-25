@@ -6,6 +6,8 @@ initLocalStorage();
 
 
 function closeModal() {
+    document.getElementById("deleteTaskDiv").style.display = "none";
+    document.getElementById("creatorsNameDiv").style.display = "none";
     document.getElementById("newTaskModal").close();
 }
 function saveTask(taskId) {
@@ -43,9 +45,12 @@ function saveTask(taskId) {
 }
 function editTask(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let users = JSON.parse(localStorage.getItem("users"));
     let task = tasks.find(task => task.taskId === taskId);
     if (task && task.status !== "finished") {
         document.getElementById("deleteTaskDiv").style.display = "block";
+        document.getElementById("creatorsNameDiv").style.display = "block";
+        document.getElementById("creatorsNameDiv").innerText = `Creator: ${users.find(u => u.userId == task.creatorId).username}`;
         document.getElementById("description").value = task.description;
         document.getElementById("modalTitle").innerText = task.description;
         document.getElementById("priority").value = task.priority;
