@@ -18,12 +18,16 @@ function saveTask(taskId) {
     let creatorId = currentUser.userId;
     let status = "pending";
     let task = tasks.find(task => task.taskId == taskId);
-    if (task) {
+    if (task) {//editing an existing task
         task.description = description;
         task.priority = priority;
         task.date = date;
         task.time = time;
         task.status = status;
+        let userTask = currentUser.tasks.find(task => task.taskId == taskId);
+        if(userTask) {
+            userTask = task;
+        }
     } else {
         // Create a new task if taskId is not found
         taskId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].taskId + 1 : 1;

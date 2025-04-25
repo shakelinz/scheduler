@@ -72,7 +72,7 @@ export function openModalForNew(event) {
 
     //now we have the date: dayDate (example: "2025-04-22")
     //and the time: hour (examples: "8" or "12")
-  }else if(event.target.className == "task"){
+  }else if(event.target.className.includes("task")){
     // The user clicked inside a task
     let id = event.target.getAttribute("id").substring(7);
     let currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -83,7 +83,6 @@ export function openModalForNew(event) {
     editTask(id);
     return;
   }
-  console.log("check");
   
   let newTaskModal = document.getElementById("newTaskModal");
   document.getElementById("description").value = "";
