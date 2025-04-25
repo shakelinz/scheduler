@@ -45,13 +45,13 @@
               09:00
             </div>
             <div class="hour" id="day1hour10" onclick="openModalForNew(event)">
-              10:00              
+              10:00
             </div>
             <div class="hour" id="day1hour11" onclick="openModalForNew(event)">
               11:00
             </div>
             <div class="hour" id="day1hour12" onclick="openModalForNew(event)">
-              12:00              
+              12:00
             </div>
             <div class="hour" id="day1hour13" onclick="openModalForNew(event)">
               13:00
@@ -85,13 +85,13 @@
               09:00
             </div>
             <div class="hour" id="day2hour10" onclick="openModalForNew(event)">
-              10:00              
+              10:00
             </div>
             <div class="hour" id="day2hour11" onclick="openModalForNew(event)">
               11:00
             </div>
             <div class="hour" id="day2hour12" onclick="openModalForNew(event)">
-              12:00              
+              12:00
             </div>
             <div class="hour" id="day2hour13" onclick="openModalForNew(event)">
               13:00
@@ -125,13 +125,13 @@
               09:00
             </div>
             <div class="hour" id="day3hour10" onclick="openModalForNew(event)">
-              10:00              
+              10:00
             </div>
             <div class="hour" id="day3hour11" onclick="openModalForNew(event)">
               11:00
             </div>
             <div class="hour" id="day3hour12" onclick="openModalForNew(event)">
-              12:00              
+              12:00
             </div>
             <div class="hour" id="day3hour13" onclick="openModalForNew(event)">
               13:00
@@ -165,13 +165,13 @@
               09:00
             </div>
             <div class="hour" id="day4hour10" onclick="openModalForNew(event)">
-              10:00              
+              10:00
             </div>
             <div class="hour" id="day4hour11" onclick="openModalForNew(event)">
               11:00
             </div>
             <div class="hour" id="day4hour12" onclick="openModalForNew(event)">
-              12:00              
+              12:00
             </div>
             <div class="hour" id="day4hour13" onclick="openModalForNew(event)">
               13:00
@@ -205,13 +205,13 @@
               09:00
             </div>
             <div class="hour" id="day5hour10" onclick="openModalForNew(event)">
-              10:00              
+              10:00
             </div>
             <div class="hour" id="day5hour11" onclick="openModalForNew(event)">
               11:00
             </div>
             <div class="hour" id="day5hour12" onclick="openModalForNew(event)">
-              12:00              
+              12:00
             </div>
             <div class="hour" id="day5hour13" onclick="openModalForNew(event)">
               13:00
@@ -245,13 +245,13 @@
               09:00
             </div>
             <div class="hour" id="day6hour10" onclick="openModalForNew(event)">
-              10:00              
+              10:00
             </div>
             <div class="hour" id="day6hour11" onclick="openModalForNew(event)">
               11:00
             </div>
             <div class="hour" id="day6hour12" onclick="openModalForNew(event)">
-              12:00              
+              12:00
             </div>
             <div class="hour" id="day6hour13" onclick="openModalForNew(event)">
               13:00
@@ -285,13 +285,13 @@
               09:00
             </div>
             <div class="hour" id="day7hour10" onclick="openModalForNew(event)">
-              10:00              
+              10:00
             </div>
             <div class="hour" id="day7hour11" onclick="openModalForNew(event)">
               11:00
             </div>
             <div class="hour" id="day7hour12" onclick="openModalForNew(event)">
-              12:00              
+              12:00
             </div>
             <div class="hour" id="day7hour13" onclick="openModalForNew(event)">
               13:00
@@ -332,13 +332,15 @@
             X
           </button>
           <div class="row justify-content-center align-items-center h-100">
-            <div class="col-12 col-lg-12 col-xl-13">
+            <div class="col-12 col-lg-16 col-xl-19">
               <div
                 class="card shadow-2-strong card-registration"
                 style="border-radius: 15px"
               >
                 <div class="card-body p-4 p-md-5">
-                  <h3 id="modalTitle" class="mb-4 pb-2 pb-md-0 mb-md-5">New Task</h3>
+                  <h3 id="modalTitle" class="mb-4 pb-2 pb-md-0 mb-md-5">
+                    New Task
+                  </h3>
                   <form id="productForm">
                     <div class="row">
                       <div class="col-md-6 mb-4">
@@ -365,7 +367,8 @@
                             class="form-control form-control-lg"
                           />
                           <label class="form-label" for="priority"
-                            >Priority</label>
+                            >Priority</label
+                          >
                         </div>
                       </div>
                     </div>
@@ -382,12 +385,9 @@
                             class="form-control form-control-lg"
                             id="date"
                           />
-                          <label for="date" class="form-label"
-                            >Date</label
-                          >
+                          <label for="date" class="form-label">Date</label>
                         </div>
                       </div>
-                      
 
                       <div class="col-md-6 mb-4 pb-2">
                         <div data-mdb-input-init class="form-outline">
@@ -404,17 +404,30 @@
                         </div>
                       </div>
                     </div>
-
-                    <div class="mt-4 pt-2">
-                      <input
-                        data-mdb-ripple-init
-                        class="btn btn-primary btn-lg"
-                        type="submit"
-                        value="Save changes"
-                        id="saveChanges"
-                        onclick="saveTask(0)"
-                      />
+                    <div class="col-md-6 mb-4 pb-2">
+                      <div class="mt-4 pt-2">
+                        <input
+                          data-mdb-ripple-init
+                          class="btn btn-primary btn-lg"
+                          type="submit"
+                          value="Save changes"
+                          id="saveChanges"
+                          onclick="saveTask(0)"
+                        />
+                      </div>
                     </div>
+
+                    <div id="deleteTaskDiv" style="display: none;" class="col-md-6 mb-4 pb-2">
+                      <div class="mt-4 pt-2">
+                        <input
+                          data-mdb-ripple-init
+                          class="btn btn-danger btn-lg"
+                          type="button"
+                          value="Finish Task"
+                          id="deleteTaskBtn"
+                          onclick="deleteTask(0)"
+                        />
+                      </div>
                   </form>
                 </div>
               </div>

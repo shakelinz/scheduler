@@ -40,16 +40,32 @@ function saveTask(taskId) {
 function editTask(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let task = tasks.find(task => task.taskId === taskId);
-    if (task) {
+    if (task && task.status !== "finished") {
+        document.getElementById("deleteTaskDiv").style.display = "block";
         document.getElementById("description").value = task.description;
         document.getElementById("modalTitle").innerText = task.description;
         document.getElementById("priority").value = task.priority;
+        document.getElementById("deleteTaskDiv").onclick = () => deleteTask(task.taskId);
         document.getElementById("saveChanges").onclick = () => saveTask(task.taskId);
         document.getElementById("newTaskModal").showModal();
         document.getElementById("date").value = task.date;
         document.getElementById("time").value = Number(task.time);
+    }   
+}
+
+function deleteTask(taskId) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    let task = currentUser.tasks.find(task => task.taskId == taskId);
+    if (task) {
+        task.status = "finished";
     }
-    
+    task = tasks.find(task => task.taskId == taskId);
+    task.status = "finished";
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    closeModal();
+    location.reload();    
 }
 
 
@@ -62,6 +78,7 @@ window.openModalForNew = openModalForNew;
 window.closeModal = closeModal;
 window.saveTask = saveTask;
 window.editTask = editTask;
+window.deleteTask = deleteTask;
 
 
 //main code
