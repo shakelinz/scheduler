@@ -51,6 +51,7 @@ export function nextWeek() {
 }
 
 export function openModalForNew(event) {
+  
   if (!localStorage.getItem("currentUser")) {//no user is logged in
     document.location.href = "login.html";
   }
@@ -71,12 +72,26 @@ export function openModalForNew(event) {
 
     //now we have the date: dayDate (example: "2025-04-22")
     //and the time: hour (examples: "8" or "12")
+  }else if(event.target.className == "task"){
+    // The user clicked inside a task
+    let id = event.target.getAttribute("id").substring(7);
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(currentUser.isManager == false && currentUser.tasks.some(task => task.taskId == id) == false){
+      alert("You are not allowed to edit this task.");
+      return;
+    }
+    editTask(id);
+    return;
   }
+  console.log("check");
+  
   let newTaskModal = document.getElementById("newTaskModal");
-  newTaskModal.showModal();
+  document.getElementById("description").value = "";
+  document.getElementById("modalTitle").innerText = "New Task";
   document.getElementById("date").value = dayDate;
   document.getElementById("time").value = hour;
   document.getElementById("priority").value = 1;
+  newTaskModal.showModal();
 }
 let test = "test";
 export let currUser;
@@ -121,7 +136,6 @@ export function putTasksOnWeek(startDate) {
 
   //let stringThisWeekStartDate = thisWeekStartDate.toISOString().split('T')[0]; //"YYYY-MM-DD"
   //let stringThisWeekEndDate = thisWeekEndDate.toISOString().split('T')[0]; //"YYYY-MM-DD"
-
   //get tasks
   tasksArr = JSON.parse(localStorage.getItem("tasks"));
   if (tasksArr.length == 0) {
@@ -145,7 +159,7 @@ export function putTasksOnWeek(startDate) {
     
     //add innerHTML like this: <div class="task">Task Description</div>
     hourElement.innerHTML += `
-            <div class="task" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
+            <div class="task" id="taskDiv${tmpTask.taskId}" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
         `;
   }
 }

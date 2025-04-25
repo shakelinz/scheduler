@@ -2,9 +2,7 @@ import { User, Task, initLocalStorage } from "./classes.js";
 import {setDatesInWeek, fillWeek, prevWeek, nextWeek, openModalForNew} from "./calendarUtil.js"
 initLocalStorage();
 
-//main code
-let weekStartDate = new Date(setDatesInWeek());
-fillWeek(weekStartDate);
+
 
 
 function closeModal() {
@@ -44,12 +42,12 @@ function editTask(taskId) {
     let task = tasks.find(task => task.taskId === taskId);
     if (task) {
         document.getElementById("description").value = task.description;
-        document.getElementById("priority").value = task.priority;
-        document.getElementById("date").value = task.date;
-        document.getElementById("time").value = Number(task.time);
         document.getElementById("modalTitle").innerText = task.description;
+        document.getElementById("priority").value = task.priority;
         document.getElementById("saveChanges").onclick = () => saveTask(task.taskId);
         document.getElementById("newTaskModal").showModal();
+        document.getElementById("date").value = task.date;
+        document.getElementById("time").value = Number(task.time);
     }
     
 }
@@ -66,6 +64,9 @@ window.saveTask = saveTask;
 window.editTask = editTask;
 
 
+//main code
+let weekStartDate = new Date(setDatesInWeek());
+fillWeek(weekStartDate);
 
 // dates date טיפול בתאריכים
 // -----------------------------------
