@@ -156,10 +156,27 @@ export function putTasksOnWeek(startDate) {
     let tmpDate = new Date(tmpTask.date);
     let tmpDayInWeek = tmpDate.getDay() + 1; //because getDay() returns 0 for Sunday, 1 for Monday etc.
     hourElement = document.getElementById(`day${tmpDayInWeek}hour${tmpTask.time}`);
-    
     //add innerHTML like this: <div class="task">Task Description</div>
-    hourElement.innerHTML += `
-            <div class="task" id="taskDiv${tmpTask.taskId}" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
+    if(tmpTask.status == "finished"){
+      hourElement.innerHTML += `
+            <div class="task bg-secondary	text-white p-1 rounded" id="taskDiv${tmpTask.taskId}" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
         `;
+    }else if(tmpTask.status == "pending"){
+      if(tmpTask.priority == 1){
+        hourElement.innerHTML += `
+            <div class="task bg-success text-white p-1 rounded" id="taskDiv${tmpTask.taskId}" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
+        `;
+      } else if(tmpTask.priority == 2){
+        hourElement.innerHTML += `
+            <div class="task bg-warning text-white p-1 rounded" id="taskDiv${tmpTask.taskId}" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
+        `;
+      } else if(tmpTask.priority == 3){
+        hourElement.innerHTML += `
+            <div class="task bg-danger text-white p-1 rounded" id="taskDiv${tmpTask.taskId}" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
+        `;
+      }
+
+    }
+    
   }
 }
