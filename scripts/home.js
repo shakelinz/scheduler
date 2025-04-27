@@ -17,20 +17,32 @@ function saveTask(taskId) {
     let creatorId = currentUser.userId;
     let status = "pending";
     let task = tasks.find(task => task.taskId == taskId);
-    if (task) {//editing an existing task
+    if (task) {
+        // Editing an existing task
         task.description = description;
         task.priority = priority;
         task.date = date;
         task.time = time;
         task.status = status;
-        let userTask = currentUser.tasks.find(task => task.taskId == taskId);
-        if (userTask) {
-            userTask = task;
+        let userTaskIndex = currentUser.tasks.findIndex(task => task.taskId == taskId);
+        if (userTaskIndex !== -1) {
+            currentUser.tasks[userTaskIndex] = task;
         }
     } else {
-        // Create a new task if taskId is not found
-        taskId = tasks[tasks.length - 1] ? tasks[tasks.length - 1].taskId + 1 : 1;
-        task = new Task(taskId, description, priority, date, time, creatorId, status);
+        // Creating a new task
+        let newTaskId;
+
+        // Check if there's any task in the tasks list
+        if (tasks.length > 0) {
+            newTaskId = Math.max(...tasks.map(task => task.taskId)) + 1; // Ensure unique task ID
+        } else {
+            newTaskId = 1; // If no tasks exist, start from 1
+        }
+
+        // Create a new task with the unique ID
+        task = new Task(newTaskId, description, priority, date, time, creatorId, status);
+
+        // Push the new task to the global tasks array and current user’s task array
         tasks.push(task);
         currentUser.tasks.push(task);
     }
@@ -40,6 +52,9 @@ function saveTask(taskId) {
     closeModal();
     //location.reload();
 
+    // Return the save and delete buttons to their original state
+    document.getElementById("deleteTaskDiv").onclick = () => deleteTask(0);
+    document.getElementById("saveChanges").onclick = () => saveTask(0);
     //we want to stay on the same week we've been. So:
     redrawCurrentWeek(date);
 }
