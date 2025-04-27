@@ -92,7 +92,6 @@ export function openModalForNew(event) {
   document.getElementById("priority").value = 1;
   newTaskModal.showModal();
 }
-let test = "test";
 export let currUser;
 export let tasksArr = [];
 export function clearWeek() {
