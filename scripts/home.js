@@ -1,9 +1,6 @@
 import { User, Task, initLocalStorage } from "./classes.js";
-import {setDatesInWeek, fillWeek, prevWeek, nextWeek, openModalForNew} from "./calendarUtil.js"
+import { setDatesInWeek, fillWeek, prevWeek, nextWeek, openModalForNew } from "./calendarUtil.js"
 initLocalStorage();
-
-
-
 
 function closeModal() {
     document.getElementById("deleteTaskDiv").style.display = "none";
@@ -27,7 +24,7 @@ function saveTask(taskId) {
         task.time = time;
         task.status = status;
         let userTask = currentUser.tasks.find(task => task.taskId == taskId);
-        if(userTask) {
+        if (userTask) {
             userTask = task;
         }
     } else {
@@ -41,8 +38,20 @@ function saveTask(taskId) {
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
     closeModal();
-    location.reload();
+    //location.reload();
+
+    //we want to stay on the same week we've been. So:
+    redrawCurrentWeek(date);
 }
+
+function redrawCurrentWeek(wantedDateInWeek) {
+    //set a date object according to variable 'wantedDateInWeek'
+    let wantedDateInWeekObj = new Date(wantedDateInWeek);
+    let weekStartDate = setDatesInWeek(wantedDateInWeekObj);
+    fillWeek(weekStartDate);
+}
+
+
 function editTask(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let users = JSON.parse(localStorage.getItem("users"));
@@ -59,7 +68,7 @@ function editTask(taskId) {
         document.getElementById("newTaskModal").showModal();
         document.getElementById("date").value = task.date;
         document.getElementById("time").value = Number(task.time);
-    }   
+    }
 }
 
 function deleteTask(taskId) {
@@ -73,11 +82,13 @@ function deleteTask(taskId) {
     task.status = "finished";
     localStorage.setItem("tasks", JSON.stringify(tasks));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    let taskDate = task.date;
     closeModal();
-    location.reload();    
+    //location.reload();
+
+    //we want to stay on the same week we've been. So:
+    redrawCurrentWeek(taskDate);
 }
-
-
 
 
 // Attaching functions globally in order for them to work with onclick
@@ -91,8 +102,10 @@ window.deleteTask = deleteTask;
 
 
 //main code
-let weekStartDate = new Date(setDatesInWeek());
-fillWeek(weekStartDate);
+//let weekStartDate = new Date(setDatesInWeek());
+//fillWeek(weekStartDate);
+redrawCurrentWeek(new Date().toISOString().split('T')[0]);
+
 
 // dates date טיפול בתאריכים
 // -----------------------------------

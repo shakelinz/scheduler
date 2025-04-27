@@ -174,8 +174,6 @@ export function putTasksOnWeek(startDate) {
             <div class="task bg-danger text-white p-1 rounded" id="taskDiv${tmpTask.taskId}" onclick="editTask(${tmpTask.taskId})">${tmpTask.description}</div>    
         `;
       }
-
-    }
-    
+    }    
   }
 }
