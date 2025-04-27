@@ -100,7 +100,9 @@ function deleteTask(taskId) {
     let taskDate = task.date;
     closeModal();
     //location.reload();
-
+    // Return the save and delete buttons to their original state
+    document.getElementById("deleteTaskDiv").onclick = () => deleteTask(0);
+    document.getElementById("saveChanges").onclick = () => saveTask(0);
     //we want to stay on the same week we've been. So:
     redrawCurrentWeek(taskDate);
 }
