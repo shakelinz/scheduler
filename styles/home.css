@@ -10,7 +10,6 @@
     background-repeat: repeat;
     background-attachment: fixed;
     background-size: auto;
-
     margin: 0;
     padding: 0;
     display: flex;
@@ -95,6 +94,8 @@
 .task:hover {
     background-color: #bbdefb;
     cursor: pointer;
+    transition: 200ms;
+    transform: scale(1.2);
 }
 
 .GoToBtns {
@@ -113,4 +114,10 @@
 
 .GoToBtns:hover {
     background-color: #bbdefb;
+}
+
+@media (max-width: 754px){
+    .week {
+        grid-template-columns: repeat(1, 1fr);   
+    }
 }
